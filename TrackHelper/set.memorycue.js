@@ -23,7 +23,13 @@ for (const track of _vars.tracksSelected) {
 	let cuepointMaxPos = 0;
 	
 	for (const cuepoint of track.cuepoints) {
-		let changeToMemoryCue = false; 
+		let changeToMemoryCue = false;
+		
+		// Ensure cuepoint.name is always a string to prevent potential errors
+		if (typeof cuepoint.name!== 'string') {
+			// If name is not a string (null or undefined), set it to an empty string
+			cuepoint.name = '';
+		}
     
 		if(cuepointMaxPos < cuepoint.position && !cuepoint.name.toLowerCase().includes(cueTextMatch)) {
 			cuepointMaxPos = cuepoint.position;
